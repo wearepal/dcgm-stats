@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "dcgm-stats"
+version = "0.1.0"
+description = ""
+authors = ["Thomas MK <tmke@posteo.net>"]
+license = "Apache License 2.0"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+mypy = "^0.961"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
