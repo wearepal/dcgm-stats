@@ -2,20 +2,22 @@ from __future__ import annotations
 from collections import defaultdict
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Final, Generic, TypeVar, Union
+from typing import Final, TypeVar, Union
 import urllib.request
+
+__all__ = ["main"]
 
 T = TypeVar("T")
 
 
 @dataclass
-class Metric(Generic[T]):
+class Metric:
     column: str
-    converter: Callable[[str], T]
+    converter: Union[Callable[[str], float], Callable[[str], int]]
     suffix: str = ""
 
 
-METRICS: Final[dict[str, Union[Metric[int], Metric[float]]]] = {
+METRICS: Final[dict[str, Metric]] = {
     "GPU util": Metric("DCGM_FI_DEV_GPU_UTIL", float, "%"),
     "temp.": Metric("DCGM_FI_DEV_GPU_TEMP", int, "C"),
     "power": Metric("DCGM_FI_DEV_POWER_USAGE", float, "W"),
