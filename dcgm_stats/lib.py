@@ -1,8 +1,7 @@
 from __future__ import annotations
 from collections import defaultdict
 from collections.abc import Callable
-from dataclasses import dataclass
-from typing import Final, TypeVar, Union
+from typing import Final, NamedTuple, TypeVar, Union
 import urllib.request
 
 __all__ = ["main"]
@@ -10,8 +9,7 @@ __all__ = ["main"]
 T = TypeVar("T")
 
 
-@dataclass
-class Metric:
+class Metric(NamedTuple):
     column: str
     converter: Union[Callable[[str], float], Callable[[str], int]]
     suffix: str = ""
